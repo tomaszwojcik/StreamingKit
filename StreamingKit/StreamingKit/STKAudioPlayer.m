@@ -597,7 +597,10 @@ static void AudioFileStreamPacketsProc(void* clientData, UInt32 numberBytes, UIn
     pthread_mutex_destroy(&mainThreadSyncCallMutex);
     pthread_cond_destroy(&playerThreadReadyCondition);
     pthread_cond_destroy(&mainThreadSyncCallReadyCondition);
-    
+
+    NSLog(@"STKAudioPlayer deallocing buffer");
+
+    free(pcmAudioBufferList.mBuffers[0].mData);
     free(readBuffer);
 }
 
